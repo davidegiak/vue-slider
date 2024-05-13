@@ -71,6 +71,13 @@
 .next {
     bottom: 0;
 }
+.none {
+    display: none;
+}
+
+.active {
+    display: block;
+}
 
 /*
 EXTRA: in questo esempio gli accordion vengono creati
