@@ -33,7 +33,7 @@
                  }
              ],
              activeImage: 0,
-             timer: 3000
+             timer: null
          }
      },
      methods: {
@@ -41,14 +41,14 @@
              return (indice == this.activeImage) ? 'active' : '';
          },
          next() {
-             if (this.activeImage == 4) {
+             if (this.activeImage == this.slides.length - 1) {
                  this.activeImage = 0
              } else {
                  this.activeImage++
              }
          },
          prev() {
-             if (this.activeImage == 0) {
+             if (this.activeImage == this.slides.length - this.slides.length) {
                  this.activeImage = 4
              } else {
                  this.activeImage--
@@ -57,12 +57,16 @@
          thumbActive(indice) {
              this.activeImage = indice
          },
-        //  autoplay() {
-        //      setInterval(function () {
-        //          console.log("sta funzionando")
-        //         this.activeImage++
-
-        //      }, this.timer);
-        //  }
+         autoplay() {
+            if (this.timer == null) {
+                this.timer = setInterval(this.next, 3000)
+            }
+         },
+         stopAutoplay() {
+            if (this.timer) {
+                clearInterval(this.timer);
+                this.timer = null
+            }
+         }
      },
  }).mount('#app')
